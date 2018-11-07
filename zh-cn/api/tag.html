@@ -2,7 +2,7 @@
 <html lang="zh-cn">
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
-  <title>标签插件（Tag） | Hexo</title>
+  <title>标签插件（Tag） | 鎏金云-文档</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
@@ -48,19 +48,19 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
   <!-- RSS -->
-  <link rel="alternate" href="/atom.xml" title="Hexo">
+  <link rel="alternate" href="/atom.xml" title="鎏金云-文档">
   <!-- Open Graph -->
-  <meta name="description" content="标签插件帮助开发者在文章中快速插入内容。 概要hexo.extend.tag.register(name, function(args, content)&amp;#123;&amp;#125;, options); 标签函数会传入两个参数：args 和 content，前者代表开发者在使用标签插件时传入的参数，而后者则是标签插件所覆盖的内容。 从 Hexo 3 开始，因为新增了非同步渲染功能，而改用 Nunju">
+  <meta name="description" content="标签插件帮助开发者在文章中快速插入内容。 概要11hexo.extend.tag.register(name, function(args, content)&amp;#123;&amp;#125;, options); 标签函数会传入两个参数：args 和 content，前者代表开发者在使用标签插件时传入的参数，而后者则是标签插件所覆盖的内容。 从 Hexo 3 开始，因为新增了非同步渲染功能，而改用 Nun">
 <meta property="og:type" content="website">
 <meta property="og:title" content="标签插件（Tag）">
 <meta property="og:url" content="https://hexo.io/zh-cn/api/tag.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="标签插件帮助开发者在文章中快速插入内容。 概要hexo.extend.tag.register(name, function(args, content)&amp;#123;&amp;#125;, options); 标签函数会传入两个参数：args 和 content，前者代表开发者在使用标签插件时传入的参数，而后者则是标签插件所覆盖的内容。 从 Hexo 3 开始，因为新增了非同步渲染功能，而改用 Nunju">
+<meta property="og:site_name" content="鎏金云-文档">
+<meta property="og:description" content="标签插件帮助开发者在文章中快速插入内容。 概要11hexo.extend.tag.register(name, function(args, content)&amp;#123;&amp;#125;, options); 标签函数会传入两个参数：args 和 content，前者代表开发者在使用标签插件时传入的参数，而后者则是标签插件所覆盖的内容。 从 Hexo 3 开始，因为新增了非同步渲染功能，而改用 Nun">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2018-11-02T09:53:12.729Z">
+<meta property="og:updated_time" content="2018-11-06T10:06:05.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="标签插件（Tag）">
-<meta name="twitter:description" content="标签插件帮助开发者在文章中快速插入内容。 概要hexo.extend.tag.register(name, function(args, content)&amp;#123;&amp;#125;, options); 标签函数会传入两个参数：args 和 content，前者代表开发者在使用标签插件时传入的参数，而后者则是标签插件所覆盖的内容。 从 Hexo 3 开始，因为新增了非同步渲染功能，而改用 Nunju">
+<meta name="twitter:description" content="标签插件帮助开发者在文章中快速插入内容。 概要11hexo.extend.tag.register(name, function(args, content)&amp;#123;&amp;#125;, options); 标签函数会传入两个参数：args 和 content，前者代表开发者在使用标签插件时传入的参数，而后者则是标签插件所覆盖的内容。 从 Hexo 3 开始，因为新增了非同步渲染功能，而改用 Nun">
 <meta name="twitter:site" content="hexojs">
 <meta property="fb:admins" content="100000247608790">
   <!-- Google Analytics -->
@@ -86,10 +86,80 @@
 
 <body>
   <div id="container">
-    <header id="header" class="wrapper">
+    
+<style>
+        a{
+            text-decoration: none !important;
+        }
+        a:hover{
+            color:#00c1de !important;
+        }
+        .header{
+            height:50px;
+            width:100%;
+            z-index: 99;
+            border-bottom:1px solid hsla(0,0%,100%,.15);
+        }
+        .header:hover{
+            background: #1c2327!important;
+            border-bottom: none!important;
+            transition: background .3s cubic-bezier(0,0,.2,1) 0ms;
+        }
+        .header>.logo{
+            margin-left: 20px;
+        }
+        .header>.logo>img{
+            height: 50px;
+        }
+        .header>.topbar-menu{
+            float:right;
+            font-size:14px;
+        }
+        .header>.register-btn{
+            float: right;
+            height: 50px;
+            line-height: 50px;
+            background: #00c1de;
+            padding: 0 32px;
+            color: #fff;
+            font-size: 14px;
+        }
+        .header>.register-btn:hover{
+            color:#fff !important;
+        }
+        .topbar-menu-link{
+            float:right;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 12px;
+            box-sizing: content-box;
+        }
+        .topbar-menu-link>a{
+            color: #fff;
+        }
+</style>
+<div class="header">
+    <div class="pull-left logo">
+        <img src="https://www.lojnn.com/assets/admin/pages/img/cloud-logo.png" alt="">
+    </div>
+    <a href="/backstage?register=1" class="register-btn">免费注册</a>
+    <div class="topbar-menu">
+        <div class="topbar-menu-link">
+            <a href="https://www.lojnn.com/backstage">登录</a>
+        </div>
+        <div class="topbar-menu-link">
+            <a href="">文档</a>
+        </div>
+        <div class="topbar-menu-link">
+            <a href="https://www.lojnn.com/backstage/index">控制台</a>
+        </div>
+    </div>
+</div>
+<!--
+<header id="header" class="wrapper">
   <div id="header-inner" class="inner">
     <h1 id="logo-wrap">
-      <a href="/zh-cn/" id="logo">Hexo</a>
+      <a href="/zh-cn/" id="logo">LiuJinCloud</a>
     </h1>
     <nav id="main-nav">
       <a href="/zh-cn/docs/" class="main-nav-link">文档</a><a href="/zh-cn/api/" class="main-nav-link">API</a><a href="/news/" class="main-nav-link">新闻</a><a href="/plugins/" class="main-nav-link">插件</a><a href="/themes/" class="main-nav-link">主题</a>
@@ -126,6 +196,7 @@
     </a>
   </div>
 </header>
+-->
 
     <div id="content-wrap">
   <div id="content" class="wrapper">
@@ -140,7 +211,7 @@
               </header>
               <div class="article-content" itemprop="articleBody">
                 <p>标签插件帮助开发者在文章中快速插入内容。</p>
-<h2 id="概要" class="article-heading"><a href="#概要" class="headerlink" title="概要"></a>概要<a class="article-anchor" href="#概要" aria-hidden="true"></a></h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo.extend.tag.register(name, <span class="function"><span class="keyword">function</span>(<span class="params">args, content</span>)</span>&#123;</span><br><span class="line">&#125;, options);</span><br></pre></td></tr></table></figure>
+<h2 id="概要11" class="article-heading"><a href="#概要11" class="headerlink" title="概要11"></a>概要11<a class="article-anchor" href="#概要11" aria-hidden="true"></a></h2><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">hexo.extend.tag.register(name, <span class="function"><span class="keyword">function</span>(<span class="params">args, content</span>)</span>&#123;</span><br><span class="line">&#125;, options);</span><br></pre></td></tr></table></figure>
 <p>标签函数会传入两个参数：<code>args</code> 和 <code>content</code>，前者代表开发者在使用标签插件时传入的参数，而后者则是标签插件所覆盖的内容。</p>
 <p>从 Hexo 3 开始，因为新增了非同步渲染功能，而改用 <a href="http://mozilla.github.io/nunjucks/" target="_blank" rel="noopener">Nunjucks</a> 作为渲染引擎，其行为可能会与过去使用的 <a href="http://paularmstrong.github.io/swig/" target="_blank" rel="noopener">Swig</a> 有些许差异。</p>
 <h2 id="选项" class="article-heading"><a href="#选项" class="headerlink" title="选项"></a>选项<a class="article-anchor" href="#选项" aria-hidden="true"></a></h2><h3 id="ends" class="article-heading"><a href="#ends" class="headerlink" title="ends"></a>ends<a class="article-anchor" href="#ends" aria-hidden="true"></a></h3><p>使用结束标签，此选项默认为 <code>false</code>。</p>
@@ -154,7 +225,7 @@
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2018-11-02T09:53:12.729Z" itemprop="dateModified">上次更新：2018-11-02</time>
+                <time class="article-footer-updated" datetime="2018-11-06T10:06:05.305Z" itemprop="dateModified">上次更新：2018-11-06</time>
                 <a href="renderer.html" class="article-footer-prev" title="渲染引擎 (Renderer)"><i class="fa fa-chevron-left"></i><span>上一页</span></a>
               </footer>
               
@@ -179,9 +250,9 @@
           </div>
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
-              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>
+              <!--<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>-->
               <strong class="sidebar-title">目录</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要"><span class="toc-text">概要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选项"><span class="toc-text">选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ends"><span class="toc-text">ends</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#async"><span class="toc-text">async</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范例"><span class="toc-text">范例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#没有结束标签"><span class="toc-text">没有结束标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有结束标签"><span class="toc-text">有结束标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非同步渲染"><span class="toc-text">非同步渲染</span></a></li></ol></li></ol>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#概要11"><span class="toc-text">概要11</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#选项"><span class="toc-text">选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ends"><span class="toc-text">ends</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#async"><span class="toc-text">async</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#范例"><span class="toc-text">范例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#没有结束标签"><span class="toc-text">没有结束标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#有结束标签"><span class="toc-text">有结束标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非同步渲染"><span class="toc-text">非同步渲染</span></a></li></ol></li></ol>
               <a href="#" id="article-toc-top">回到顶部</a>
             </div>
           </aside>
@@ -199,7 +270,7 @@
     <footer id="footer" class="wrapper">
   <div class="inner">
     <div id="footer-copyright">
-      &copy; 2018 <a href="https://github.com/hexojs/hexo/graphs/contributors" target="_blank">Hexo</a><br>
+      &copy; 2018 <a href="https://github.com/hexojs/hexo/graphs/contributors" target="_blank">HHY</a><br>
       Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
     </div>
     <div id="footer-links">

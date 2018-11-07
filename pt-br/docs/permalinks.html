@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
-  <title>Links Permanentes (Permalinks) | Hexo</title>
+  <title>Links Permanentes (Permalinks) | 鎏金云-文档</title>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Canonical links -->
@@ -48,13 +48,13 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
   <!-- RSS -->
-  <link rel="alternate" href="/atom.xml" title="Hexo">
+  <link rel="alternate" href="/atom.xml" title="鎏金云-文档">
   <!-- Open Graph -->
   <meta name="description" content="Você pode especificar os links permanentes (permalinks) para o seu site em _config.yml ou no front-matter de cada postagem. VariáveisAlém das seguintes variáveis, você pode usar quaisquer atributos no">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Links Permanentes (Permalinks)">
 <meta property="og:url" content="https://hexo.io/pt-br/docs/permalinks.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="鎏金云-文档">
 <meta property="og:description" content="Você pode especificar os links permanentes (permalinks) para o seu site em _config.yml ou no front-matter de cada postagem. VariáveisAlém das seguintes variáveis, você pode usar quaisquer atributos no">
 <meta property="og:locale" content="pt-br">
 <meta property="og:updated_time" content="2018-11-02T09:53:12.308Z">
@@ -86,10 +86,80 @@
 
 <body>
   <div id="container">
-    <header id="header" class="wrapper">
+    
+<style>
+        a{
+            text-decoration: none !important;
+        }
+        a:hover{
+            color:#00c1de !important;
+        }
+        .header{
+            height:50px;
+            width:100%;
+            z-index: 99;
+            border-bottom:1px solid hsla(0,0%,100%,.15);
+        }
+        .header:hover{
+            background: #1c2327!important;
+            border-bottom: none!important;
+            transition: background .3s cubic-bezier(0,0,.2,1) 0ms;
+        }
+        .header>.logo{
+            margin-left: 20px;
+        }
+        .header>.logo>img{
+            height: 50px;
+        }
+        .header>.topbar-menu{
+            float:right;
+            font-size:14px;
+        }
+        .header>.register-btn{
+            float: right;
+            height: 50px;
+            line-height: 50px;
+            background: #00c1de;
+            padding: 0 32px;
+            color: #fff;
+            font-size: 14px;
+        }
+        .header>.register-btn:hover{
+            color:#fff !important;
+        }
+        .topbar-menu-link{
+            float:right;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 12px;
+            box-sizing: content-box;
+        }
+        .topbar-menu-link>a{
+            color: #fff;
+        }
+</style>
+<div class="header">
+    <div class="pull-left logo">
+        <img src="https://www.lojnn.com/assets/admin/pages/img/cloud-logo.png" alt="">
+    </div>
+    <a href="/backstage?register=1" class="register-btn">免费注册</a>
+    <div class="topbar-menu">
+        <div class="topbar-menu-link">
+            <a href="https://www.lojnn.com/backstage">登录</a>
+        </div>
+        <div class="topbar-menu-link">
+            <a href="">文档</a>
+        </div>
+        <div class="topbar-menu-link">
+            <a href="https://www.lojnn.com/backstage/index">控制台</a>
+        </div>
+    </div>
+</div>
+<!--
+<header id="header" class="wrapper">
   <div id="header-inner" class="inner">
     <h1 id="logo-wrap">
-      <a href="/pt-br/" id="logo">Hexo</a>
+      <a href="/pt-br/" id="logo">LiuJinCloud</a>
     </h1>
     <nav id="main-nav">
       <a href="/pt-br/docs/" class="main-nav-link">Docs</a><a href="/pt-br/api/" class="main-nav-link">API</a><a href="/news/" class="main-nav-link">Novidades</a><a href="/plugins/" class="main-nav-link">Plugins</a><a href="/themes/" class="main-nav-link">Temas</a>
@@ -126,6 +196,7 @@
     </a>
   </div>
 </header>
+-->
 
     <div id="content-wrap">
   <div id="content" class="wrapper">
@@ -223,7 +294,7 @@
               </div>
               <footer class="article-footer">
                 <time class="article-footer-updated" datetime="2018-11-02T09:53:12.308Z" itemprop="dateModified">Última Atualização: 2018-11-02</time>
-                <a href="deployment.html" class="article-footer-prev" title="Implantação"><i class="fa fa-chevron-left"></i><span>Anterior</span></a><a href="themes.html" class="article-footer-next" title="Temas"><span>Próximo</span><i class="fa fa-chevron-right"></i></a>
+                <a href="index.html" class="article-footer-next" title="一级协议"><span>Próximo</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
 <section id="comments">
@@ -247,7 +318,7 @@
           </div>
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
-              <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>
+              <!--<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>-->
               <strong class="sidebar-title">Conteúdo</strong>
               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Variaveis"><span class="toc-text">Variáveis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exemplos"><span class="toc-text">Exemplos</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Suporte-Multi-idioma"><span class="toc-text">Suporte Multi-idioma</span></a></li></ol>
               <a href="#" id="article-toc-top">Ir para o Topo</a>
@@ -257,7 +328,7 @@
       </article>
       <aside id="sidebar" role="navigation">
   <div class="inner">
-    <strong class="sidebar-title">Começando</strong><a href="index.html" class="sidebar-link">Visão Geral</a><a href="setup.html" class="sidebar-link">Setup</a><a href="configuration.html" class="sidebar-link">Configuração</a><a href="commands.html" class="sidebar-link">Comandos</a><a href="migration.html" class="sidebar-link">Migração</a><strong class="sidebar-title">Uso Básico</strong><a href="writing.html" class="sidebar-link">Escrevendo</a><a href="front-matter.html" class="sidebar-link">Front-matter</a><a href="tag-plugins.html" class="sidebar-link">Tag Plugins</a><a href="asset-folders.html" class="sidebar-link">Diretórios de Recursos</a><a href="data-files.html" class="sidebar-link">Arquivos de Dados</a><a href="server.html" class="sidebar-link">Servidor</a><a href="generating.html" class="sidebar-link">Gerando</a><a href="deployment.html" class="sidebar-link">Implantação</a><strong class="sidebar-title">Customização</strong><a href="permalinks.html" class="sidebar-link current">Links Permanentes</a><a href="themes.html" class="sidebar-link">Temas</a><a href="templates.html" class="sidebar-link">Templates</a><a href="variables.html" class="sidebar-link">Variáveis</a><a href="helpers.html" class="sidebar-link">Helpers</a><a href="internationalization.html" class="sidebar-link">Internacionalização (i18n)</a><a href="plugins.html" class="sidebar-link">Plugins</a><strong class="sidebar-title">Miscelânea</strong><a href="troubleshooting.html" class="sidebar-link">Soluções de Problemas</a><a href="contributing.html" class="sidebar-link">Contribuindo</a>
+    <strong class="sidebar-title">Começando</strong><a href="index.html" class="sidebar-link">一级协议</a><a href="second_level_protocol.html" class="sidebar-link">二级协议</a>
   </div>
 </aside>
     </div>
@@ -267,7 +338,7 @@
     <footer id="footer" class="wrapper">
   <div class="inner">
     <div id="footer-copyright">
-      &copy; 2018 <a href="https://github.com/hexojs/hexo/graphs/contributors" target="_blank">Hexo</a><br>
+      &copy; 2018 <a href="https://github.com/hexojs/hexo/graphs/contributors" target="_blank">HHY</a><br>
       Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
     </div>
     <div id="footer-links">
@@ -288,7 +359,7 @@
       </li>
     </ul>
     
-      <strong class="mobile-nav-title">Começando</strong><a href="index.html" class="mobile-nav-link">Visão Geral</a><a href="setup.html" class="mobile-nav-link">Setup</a><a href="configuration.html" class="mobile-nav-link">Configuração</a><a href="commands.html" class="mobile-nav-link">Comandos</a><a href="migration.html" class="mobile-nav-link">Migração</a><strong class="mobile-nav-title">Uso Básico</strong><a href="writing.html" class="mobile-nav-link">Escrevendo</a><a href="front-matter.html" class="mobile-nav-link">Front-matter</a><a href="tag-plugins.html" class="mobile-nav-link">Tag Plugins</a><a href="asset-folders.html" class="mobile-nav-link">Diretórios de Recursos</a><a href="data-files.html" class="mobile-nav-link">Arquivos de Dados</a><a href="server.html" class="mobile-nav-link">Servidor</a><a href="generating.html" class="mobile-nav-link">Gerando</a><a href="deployment.html" class="mobile-nav-link">Implantação</a><strong class="mobile-nav-title">Customização</strong><a href="permalinks.html" class="mobile-nav-link current">Links Permanentes</a><a href="themes.html" class="mobile-nav-link">Temas</a><a href="templates.html" class="mobile-nav-link">Templates</a><a href="variables.html" class="mobile-nav-link">Variáveis</a><a href="helpers.html" class="mobile-nav-link">Helpers</a><a href="internationalization.html" class="mobile-nav-link">Internacionalização (i18n)</a><a href="plugins.html" class="mobile-nav-link">Plugins</a><strong class="mobile-nav-title">Miscelânea</strong><a href="troubleshooting.html" class="mobile-nav-link">Soluções de Problemas</a><a href="contributing.html" class="mobile-nav-link">Contribuindo</a>
+      <strong class="mobile-nav-title">Começando</strong><a href="index.html" class="mobile-nav-link">一级协议</a><a href="second_level_protocol.html" class="mobile-nav-link">二级协议</a>
     
   </div>
   <div id="mobile-lang-select-wrap">

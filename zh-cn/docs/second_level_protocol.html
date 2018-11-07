@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <title>二级协议 | 鎏金云-文档</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://hexo.io/zh-cn/docs/second_level_protocol.html">
+  <!-- Alternative links -->
+  
+    
+      <link rel="alternative" hreflang="en" href="https://hexo.io/docs/second_level_protocol.html">
+    
+      <link rel="alternative" hreflang="zh-tw" href="https://hexo.io/zh-tw/docs/second_level_protocol.html">
+    
+      <link rel="alternative" hreflang="zh-cn" href="https://hexo.io/zh-cn/docs/second_level_protocol.html">
+    
+      <link rel="alternative" hreflang="ru" href="https://hexo.io/ru/docs/second_level_protocol.html">
+    
+      <link rel="alternative" hreflang="ko" href="https://hexo.io/ko/docs/second_level_protocol.html">
+    
+      <link rel="alternative" hreflang="pt-br" href="https://hexo.io/pt-br/docs/second_level_protocol.html">
+    
+  
+  <!-- Icon -->
+  <link rel="apple-touch-icon" sizes="57x57" href="/icon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="/icon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="/icon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="/icon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="/icon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="/icon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/icon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/icon/apple-touch-icon-152x152.png">
+  <link rel="icon" type="image/png" href="/icon/favicon-196x196.png" sizes="196x196">
+  <link rel="icon" type="image/png" href="/icon/favicon-160x160.png" sizes="160x160">
+  <link rel="icon" type="image/png" href="/icon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="/icon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="/icon/favicon-32x32.png" sizes="32x32">
+  <meta name="msapplication-TileColor" content="#2f83cd">
+  <meta name="msapplication-TileImage" content="/icon/mstile-144x144.png">
+  <meta name="generator" content="Hexo 3.8.0">
+  <!-- CSS -->
+  <!-- build:css build/css/navy.css -->
+  <link rel="stylesheet" href="/css/navy.css">
+  <!-- endbuild -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css">
+  <!-- RSS -->
+  <link rel="alternate" href="/atom.xml" title="鎏金云-文档">
+  <!-- Open Graph -->
+  <meta name="description" content="说明：1.波特率 9600 N 8 1 2.校验方式 加总异或 3.数据格式 固定帧头+长度+数据区+校验。①长度为数据区长度 [设备地址,数据结束]。②校验为数据区加总异或 [设备地址,数据结束]。 4.数据模式 大端模式 高位在前，低位在后。 5.数据连续主动上报最小时间间隔200ms。 6.所有主动上报指令必须等待接收到入网成功指令后再上报。 握手设备发送   项 值     帧头 0✖5A">
+<meta property="og:type" content="website">
+<meta property="og:title" content="二级协议">
+<meta property="og:url" content="https://hexo.io/zh-cn/docs/second_level_protocol.html">
+<meta property="og:site_name" content="鎏金云-文档">
+<meta property="og:description" content="说明：1.波特率 9600 N 8 1 2.校验方式 加总异或 3.数据格式 固定帧头+长度+数据区+校验。①长度为数据区长度 [设备地址,数据结束]。②校验为数据区加总异或 [设备地址,数据结束]。 4.数据模式 大端模式 高位在前，低位在后。 5.数据连续主动上报最小时间间隔200ms。 6.所有主动上报指令必须等待接收到入网成功指令后再上报。 握手设备发送   项 值     帧头 0✖5A">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-11-07T03:31:09.162Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="二级协议">
+<meta name="twitter:description" content="说明：1.波特率 9600 N 8 1 2.校验方式 加总异或 3.数据格式 固定帧头+长度+数据区+校验。①长度为数据区长度 [设备地址,数据结束]。②校验为数据区加总异或 [设备地址,数据结束]。 4.数据模式 大端模式 高位在前，低位在后。 5.数据连续主动上报最小时间间隔200ms。 6.所有主动上报指令必须等待接收到入网成功指令后再上报。 握手设备发送   项 值     帧头 0✖5A">
+<meta name="twitter:site" content="hexojs">
+<meta property="fb:admins" content="100000247608790">
+  <!-- Google Analytics -->
+  
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-48498357-3', 'auto');
+  ga('send', 'pageview');
+</script>
+
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-6482217598104186",
+          enable_page_level_ads: true
+     });
+  </script>
+</head>
+
+<body>
+  <div id="container">
+    
+<style>
+        a{
+            text-decoration: none !important;
+        }
+        a:hover{
+            color:#00c1de !important;
+        }
+        .header{
+            height:50px;
+            width:100%;
+            z-index: 99;
+            border-bottom:1px solid hsla(0,0%,100%,.15);
+        }
+        .header:hover{
+            background: #1c2327!important;
+            border-bottom: none!important;
+            transition: background .3s cubic-bezier(0,0,.2,1) 0ms;
+        }
+        .header>.logo{
+            margin-left: 20px;
+        }
+        .header>.logo>img{
+            height: 50px;
+        }
+        .header>.topbar-menu{
+            float:right;
+            font-size:14px;
+        }
+        .header>.register-btn{
+            float: right;
+            height: 50px;
+            line-height: 50px;
+            background: #00c1de;
+            padding: 0 32px;
+            color: #fff;
+            font-size: 14px;
+        }
+        .header>.register-btn:hover{
+            color:#fff !important;
+        }
+        .topbar-menu-link{
+            float:right;
+            height: 50px;
+            line-height: 50px;
+            padding: 0 12px;
+            box-sizing: content-box;
+        }
+        .topbar-menu-link>a{
+            color: #fff;
+        }
+</style>
+<div class="header">
+    <div class="pull-left logo">
+        <img src="https://www.lojnn.com/assets/admin/pages/img/cloud-logo.png" alt="">
+    </div>
+    <a href="/backstage?register=1" class="register-btn">免费注册</a>
+    <div class="topbar-menu">
+        <div class="topbar-menu-link">
+            <a href="https://www.lojnn.com/backstage">登录</a>
+        </div>
+        <div class="topbar-menu-link">
+            <a href="">文档</a>
+        </div>
+        <div class="topbar-menu-link">
+            <a href="https://www.lojnn.com/backstage/index">控制台</a>
+        </div>
+    </div>
+</div>
+<!--
+<header id="header" class="wrapper">
+  <div id="header-inner" class="inner">
+    <h1 id="logo-wrap">
+      <a href="/zh-cn/" id="logo">LiuJinCloud</a>
+    </h1>
+    <nav id="main-nav">
+      <a href="/zh-cn/docs/" class="main-nav-link">文档</a><a href="/zh-cn/api/" class="main-nav-link">API</a><a href="/news/" class="main-nav-link">新闻</a><a href="/plugins/" class="main-nav-link">插件</a><a href="/themes/" class="main-nav-link">主题</a>
+      <a href="https://github.com/hexojs/hexo" class="main-nav-link"><i class="fa fa-github-alt"></i></a>
+      <div id="search-input-wrap">
+        <div id="search-input-icon">
+          <i class="fa fa-search"></i>
+        </div>
+        <input type="search" id="search-input" placeholder="Search...">
+      </div>
+    </nav>
+    <div id="lang-select-wrap">
+      <label id="lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></label>
+      <select id="lang-select" data-canonical="docs/second_level_protocol.html">
+        
+          <option value="en">English</option>
+        
+          <option value="zh-tw">正體中文</option>
+        
+          <option value="zh-cn" selected>简体中文</option>
+        
+          <option value="ru">Русский</option>
+        
+          <option value="ko">한국어</option>
+        
+          <option value="pt-br">Português (Brasil)</option>
+        
+      </select>
+    </div>
+    <a id="mobile-nav-toggle">
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+      <span class="mobile-nav-toggle-bar"></span>
+    </a>
+  </div>
+</header>
+-->
+
+    <div id="content-wrap">
+  <div id="content" class="wrapper">
+    <div id="content-inner">
+      <article class="article-container" itemscope itemtype="http://schema.org/Article">
+        <div class="article-inner">
+          <div class="article">
+            <div class="inner">
+              <header class="article-header">
+                <h1 class="article-title" itemprop="name">二级协议</h1>
+                <a href="https://github.com/hexojs/site/edit/master/source/zh-cn/docs/second_level_protocol.md" class="article-edit-link" title="改进本文"><i class="fa fa-pencil"></i></a>
+              </header>
+              <div class="article-content" itemprop="articleBody">
+                <h2 id="说明：" class="article-heading"><a href="#说明：" class="headerlink" title="说明："></a>说明：<a class="article-anchor" href="#说明：" aria-hidden="true"></a></h2><p>1.波特率 9600 N 8 1</p>
+<p>2.校验方式 加总异或</p>
+<p>3.数据格式 固定帧头+长度+数据区+校验。<br>①长度为数据区长度 [设备地址,数据结束]。<br>②校验为数据区加总异或 [设备地址,数据结束]。</p>
+<p>4.数据模式 大端模式 高位在前，低位在后。</p>
+<p>5.数据连续主动上报最小时间间隔200ms。</p>
+<p>6.所有主动上报指令必须等待接收到入网成功指令后再上报。</p>
+<h2 id="握手" class="article-heading"><a href="#握手" class="headerlink" title="握手"></a>握手<a class="article-anchor" href="#握手" aria-hidden="true"></a></h2><h3 id="设备发送" class="article-heading"><a href="#设备发送" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖0D</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖69</td>
+</tr>
+<tr>
+<td><code>起始地址</code></td>
+<td>0✖00 0✖66</td>
+</tr>
+<tr>
+<td><code>寄存器数量</code></td>
+<td>0✖00 0✖04</td>
+</tr>
+<tr>
+<td><code>字节数</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备类型</code></td>
+<td>0✖01</td>
+</tr>
+<tr>
+<td><code>子类型</code></td>
+<td>0✖01</td>
+</tr>
+<tr>
+<td><code>软件版本</code></td>
+<td>0✖<strong> 0✖</strong></td>
+</tr>
+<tr>
+<td><code>硬件版本</code></td>
+<td>0✖<strong> 0✖</strong></td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模块回复" class="article-heading"><a href="#模块回复" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖69</td>
+</tr>
+<tr>
+<td><code>起始地址</code></td>
+<td>0✖00 0✖04</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note info"><strong class="note-title">提示</strong><p>设备上电接收到入网成功指令后，主动发送握手指令 。</p>
+</blockquote>
+<h2 id="入网" class="article-heading"><a href="#入网" class="headerlink" title="入网"></a>入网<a class="article-anchor" href="#入网" aria-hidden="true"></a></h2><h3 id="设备发送-1" class="article-heading"><a href="#设备发送-1" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-1" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖66</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖86</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模块回复-1" class="article-heading"><a href="#模块回复-1" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-1" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖66</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖86</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h2 id="退网" class="article-heading"><a href="#退网" class="headerlink" title="退网"></a>退网<a class="article-anchor" href="#退网" aria-hidden="true"></a></h2><h3 id="设备发送-2" class="article-heading"><a href="#设备发送-2" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-2" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖66</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖87</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模块回复-2" class="article-heading"><a href="#模块回复-2" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-2" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖66</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖87</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h2 id="复位" class="article-heading"><a href="#复位" class="headerlink" title="复位"></a>复位<a class="article-anchor" href="#复位" aria-hidden="true"></a></h2><h3 id="设备发送-3" class="article-heading"><a href="#设备发送-3" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-3" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖66</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖85</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模块回复-3" class="article-heading"><a href="#模块回复-3" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-3" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖66</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖85</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note info"><strong class="note-title">提示</strong><p>1.设备快速连按3次入网，指示灯闪烁/蜂鸣器鸣响时间间隔500ms ，收到回复后停止，超时60S，成功快速闪烁三次，熄灭；失败长亮3S，熄灭。<br>2.设备快速连按4次退网，指示灯长亮3S/蜂鸣器长响3S<br>3.3次心跳无回复发送一条复位指令。<br>4.复位地址变更为0x85</p>
+</blockquote>
+<h2 id="心跳" class="article-heading"><a href="#心跳" class="headerlink" title="心跳"></a>心跳<a class="article-anchor" href="#心跳" aria-hidden="true"></a></h2><h3 id="设备发送-4" class="article-heading"><a href="#设备发送-4" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-4" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖80</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖88</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模块回复-4" class="article-heading"><a href="#模块回复-4" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-4" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖80</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖88</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note info"><strong class="note-title">提示</strong><p>设备每隔10分钟发送一次心跳包，1S内没有回复，重发2次，无回复，则发送复位。</p>
+</blockquote>
+<h2 id="控制" class="article-heading"><a href="#控制" class="headerlink" title="控制"></a>控制<a class="article-anchor" href="#控制" aria-hidden="true"></a></h2><h3 id="打开" class="article-heading"><a href="#打开" class="headerlink" title="打开"></a>打开<a class="article-anchor" href="#打开" aria-hidden="true"></a></h3><h4 id="设备发送-5" class="article-heading"><a href="#设备发送-5" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-5" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-5" class="article-heading"><a href="#模块回复-5" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-5" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="关闭" class="article-heading"><a href="#关闭" class="headerlink" title="关闭"></a>关闭<a class="article-anchor" href="#关闭" aria-hidden="true"></a></h3><h4 id="设备发送-6" class="article-heading"><a href="#设备发送-6" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-6" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖02</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-6" class="article-heading"><a href="#模块回复-6" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-6" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖02</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="暂停" class="article-heading"><a href="#暂停" class="headerlink" title="暂停"></a>暂停<a class="article-anchor" href="#暂停" aria-hidden="true"></a></h3><h4 id="设备发送-7" class="article-heading"><a href="#设备发送-7" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-7" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖03</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-7" class="article-heading"><a href="#模块回复-7" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-7" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖03</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="百分比" class="article-heading"><a href="#百分比" class="headerlink" title="百分比"></a>百分比<a class="article-anchor" href="#百分比" aria-hidden="true"></a></h3><h4 id="设备发送-8" class="article-heading"><a href="#设备发送-8" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-8" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖04</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-8" class="article-heading"><a href="#模块回复-8" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-8" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖04</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h2 id="设置" class="article-heading"><a href="#设置" class="headerlink" title="设置"></a>设置<a class="article-anchor" href="#设置" aria-hidden="true"></a></h2><h3 id="反向" class="article-heading"><a href="#反向" class="headerlink" title="反向"></a>反向<a class="article-anchor" href="#反向" aria-hidden="true"></a></h3><h4 id="设备发送-9" class="article-heading"><a href="#设备发送-9" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-9" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖11</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-9" class="article-heading"><a href="#模块回复-9" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-9" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖11</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="速度" class="article-heading"><a href="#速度" class="headerlink" title="速度"></a>速度<a class="article-anchor" href="#速度" aria-hidden="true"></a></h3><h4 id="设备发送-10" class="article-heading"><a href="#设备发送-10" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-10" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖12</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-10" class="article-heading"><a href="#模块回复-10" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-10" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖12</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="上电自动开关" class="article-heading"><a href="#上电自动开关" class="headerlink" title="上电自动开关"></a>上电自动开关<a class="article-anchor" href="#上电自动开关" aria-hidden="true"></a></h3><h4 id="设备发送-11" class="article-heading"><a href="#设备发送-11" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-11" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖13</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-11" class="article-heading"><a href="#模块回复-11" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-11" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖13</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h2 id="命令" class="article-heading"><a href="#命令" class="headerlink" title="命令"></a>命令<a class="article-anchor" href="#命令" aria-hidden="true"></a></h2><h3 id="恢复出厂设置" class="article-heading"><a href="#恢复出厂设置" class="headerlink" title="恢复出厂设置"></a>恢复出厂设置<a class="article-anchor" href="#恢复出厂设置" aria-hidden="true"></a></h3><h4 id="设备发送-12" class="article-heading"><a href="#设备发送-12" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-12" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖21</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-12" class="article-heading"><a href="#模块回复-12" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-12" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖21</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="复位-1" class="article-heading"><a href="#复位-1" class="headerlink" title="复位"></a>复位<a class="article-anchor" href="#复位-1" aria-hidden="true"></a></h3><h4 id="设备发送-13" class="article-heading"><a href="#设备发送-13" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-13" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖22</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖01</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h4 id="模块回复-13" class="article-heading"><a href="#模块回复-13" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-13" aria-hidden="true"></a></h4><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖22</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note info"><strong class="note-title">提示</strong><p>若无断电行程记忆，设备默认执行上电自动开关，上电后先开后关，最后回到最初位置（用户最后一次操作停止的位置，不一定在两端）。上电时（百分比为0xFF）和完成行程记忆时主动上报百分比、换向、速度等级，每条时间间隔200ms，参考主动上报格式。</p>
+</blockquote>
+<h2 id="读取" class="article-heading"><a href="#读取" class="headerlink" title="读取"></a>读取<a class="article-anchor" href="#读取" aria-hidden="true"></a></h2><h3 id="设备发送-14" class="article-heading"><a href="#设备发送-14" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-14" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖03</td>
+</tr>
+<tr>
+<td><code>起始地址</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>寄存器数量</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模块回复-14" class="article-heading"><a href="#模块回复-14" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-14" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖**</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖03</td>
+</tr>
+<tr>
+<td><code>起始地址</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>寄存器数量</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>字节长度</code></td>
+<td>0✖**</td>
+</tr>
+<tr>
+<td><code>数据1高位</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>数据1低位</code></td>
+<td>0✖**</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note info"><strong class="note-title">提示</strong><p>1、查询寄存器地址的值，内容包含百分比和设置参数。<br>2、字节长度决定了后的数据，例如：字节长度为4，后面数据依次为数据 1H 1L 2H 2L</p>
+</blockquote>
+<h2 id="主动上报" class="article-heading"><a href="#主动上报" class="headerlink" title="主动上报"></a>主动上报<a class="article-anchor" href="#主动上报" aria-hidden="true"></a></h2><h3 id="设备发送-15" class="article-heading"><a href="#设备发送-15" class="headerlink" title="设备发送"></a>设备发送<a class="article-anchor" href="#设备发送-15" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖06</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>寄存器值</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<h3 id="模块回复-15" class="article-heading"><a href="#模块回复-15" class="headerlink" title="模块回复"></a>模块回复<a class="article-anchor" href="#模块回复-15" aria-hidden="true"></a></h3><table>
+<thead>
+<tr>
+<th>项</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>帧头</code></td>
+<td>0✖5A 0✖A5</td>
+</tr>
+<tr>
+<td><code>长度</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>设备地址</code></td>
+<td>0✖00</td>
+</tr>
+<tr>
+<td><code>命令类型</code></td>
+<td>0✖04</td>
+</tr>
+<tr>
+<td><code>寄存器地址</code></td>
+<td>0✖00 0✖**</td>
+</tr>
+<tr>
+<td><code>校验</code></td>
+<td>0✖**</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note info"><strong class="note-title">提示</strong><p>1.设置发生变化时，主动上报<br>2.状态发生改变时上报当前状态 打开/关闭<br>3.窗帘停止时上报当前百分比<br>4.所有上报数据确保每条上报成功，1S内未回复，重新上报，最多上报三次</p>
+</blockquote>
+
+              </div>
+              <footer class="article-footer">
+                <time class="article-footer-updated" datetime="2018-11-07T03:31:09.162Z" itemprop="dateModified">上次更新：2018-11-07</time>
+                <a href="index.html" class="article-footer-prev" title="一级协议"><i class="fa fa-chevron-left"></i><span>上一页</span></a>
+              </footer>
+              
+<section id="comments">
+  <div id="disqus_thread"></div>
+</section>
+<script>
+  var disqus_shortname = 'hexojs';
+  var disqus_url = 'https://hexo.io/zh-cn/docs/second_level_protocol.html';
+  var disqus_title = "二级协议";
+  var disqus_config = function(){
+    this.language = 'zh';
+  };
+  (function(){
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'https://go.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+            </div>
+          </div>
+          <aside id="article-toc" role="navigation">
+            <div id="article-toc-inner">
+              <!--<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=hexoio" id="_carbonads_js"></script>-->
+              <strong class="sidebar-title">目录</strong>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#说明："><span class="toc-text">说明：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#握手"><span class="toc-text">握手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设备发送"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块回复"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#入网"><span class="toc-text">入网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设备发送-1"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块回复-1"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#退网"><span class="toc-text">退网</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设备发送-2"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块回复-2"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复位"><span class="toc-text">复位</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设备发送-3"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块回复-3"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#心跳"><span class="toc-text">心跳</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设备发送-4"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块回复-4"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#控制"><span class="toc-text">控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#打开"><span class="toc-text">打开</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-5"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-5"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭"><span class="toc-text">关闭</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-6"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-6"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#暂停"><span class="toc-text">暂停</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-7"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-7"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#百分比"><span class="toc-text">百分比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-8"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-8"><span class="toc-text">模块回复</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#设置"><span class="toc-text">设置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#反向"><span class="toc-text">反向</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-9"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-9"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#速度"><span class="toc-text">速度</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-10"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-10"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#上电自动开关"><span class="toc-text">上电自动开关</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-11"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-11"><span class="toc-text">模块回复</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令"><span class="toc-text">命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#恢复出厂设置"><span class="toc-text">恢复出厂设置</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-12"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-12"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复位-1"><span class="toc-text">复位</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#设备发送-13"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#模块回复-13"><span class="toc-text">模块回复</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#读取"><span class="toc-text">读取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设备发送-14"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块回复-14"><span class="toc-text">模块回复</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主动上报"><span class="toc-text">主动上报</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#设备发送-15"><span class="toc-text">设备发送</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模块回复-15"><span class="toc-text">模块回复</span></a></li></ol></li></ol>
+              <a href="#" id="article-toc-top">回到顶部</a>
+            </div>
+          </aside>
+        </div>
+      </article>
+      <aside id="sidebar" role="navigation">
+  <div class="inner">
+    <strong class="sidebar-title">开始使用</strong><a href="index.html" class="sidebar-link">一级协议</a><a href="second_level_protocol.html" class="sidebar-link current">二级协议</a>
+  </div>
+</aside>
+    </div>
+  </div>
+</div>
+
+    <footer id="footer" class="wrapper">
+  <div class="inner">
+    <div id="footer-copyright">
+      &copy; 2018 <a href="https://github.com/hexojs/hexo/graphs/contributors" target="_blank">HHY</a><br>
+      Documentation licensed under <a href="http://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>.
+    </div>
+    <div id="footer-links">
+      <a href="https://twitter.com/hexojs" class="footer-link" target="_blank"><i class="fa fa-twitter"></i></a>
+      <a href="https://github.com/hexojs/hexo" class="footer-link" target="_blank"><i class="fa fa-github-alt"></i></a>
+    </div>
+  </div>
+</footer>
+
+  </div>
+  <div id="mobile-nav-dimmer"></div>
+  <nav id="mobile-nav">
+  <div id="mobile-nav-inner">
+    <ul id="mobile-nav-list">
+      <a href="/zh-cn/docs/" class="mobile-nav-link">文档</a><a href="/zh-cn/api/" class="mobile-nav-link">API</a><a href="/news/" class="mobile-nav-link">新闻</a><a href="/plugins/" class="mobile-nav-link">插件</a><a href="/themes/" class="mobile-nav-link">主题</a>
+      <li class="mobile-nav-item">
+        <a href="https://github.com/hexojs/hexo" class="mobile-nav-link" rel="external" target="_blank">GitHub</a>
+      </li>
+    </ul>
+    
+      <strong class="mobile-nav-title">开始使用</strong><a href="index.html" class="mobile-nav-link">一级协议</a><a href="second_level_protocol.html" class="mobile-nav-link current">二级协议</a>
+    
+  </div>
+  <div id="mobile-lang-select-wrap">
+    <span id="mobile-lang-select-label"><i class="fa fa-globe"></i><span>简体中文</span></span>
+    <select id="mobile-lang-select" data-canonical="docs/second_level_protocol.html">
+      
+        <option value="en">English</option>
+      
+        <option value="zh-tw">正體中文</option>
+      
+        <option value="zh-cn" selected>简体中文</option>
+      
+        <option value="ru">Русский</option>
+      
+        <option value="ko">한국어</option>
+      
+        <option value="pt-br">Português (Brasil)</option>
+      
+    </select>
+  </div>
+</nav>
+  <!-- Scripts -->
+<!-- Cookie -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
+<!-- build:js build/js/main.js -->
+<script src="/js/lang_select.js"></script>
+<script src="/js/toc.js"></script>
+<script src="/js/mobile_nav.js"></script>
+<!-- endbuild -->
+
+<!-- Algolia -->
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js"></script>
+<script type="text/javascript">
+document.getElementById('search-input-wrap').classList.add('on');
+docsearch({
+  apiKey: 'cdea7d4e47d84f6145b77e7f68689f35',
+  indexName: 'hexo_zh-cn',
+  inputSelector: '#search-input'
+});
+</script>
+
+
+</body>
+</html>
